@@ -1,0 +1,8 @@
+.venv/
+.venv_tfjs311/
+__pycache__/
+*.pyc
+.venv_tfjs/
+.venv_tfjs311/
+model_old/
+exported_model/

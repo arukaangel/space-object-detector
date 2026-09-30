@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Space Object Detector</title>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.21.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <header class="hero">
+      <div>
+        <p class="eyebrow">AI • MACHINE LEARNING • SPACE</p>
+
+        <h1>Space Object Detector</h1>
+
+        <p class="subtitle">
+          Upload a space image and let AI identify whether it contains
+          a planet, star, nebula, or galaxy.
+        </p>
+      </div>
+
+      <div class="status" id="modelStatus">
+        Loading model…
+      </div>
+    </header>
+
+
+    <!-- UPLOAD -->
+
+    <section class="card upload-card">
+
+      <label class="upload-box" for="imageInput">
+
+        <input
+          id="imageInput"
+          type="file"
+          accept="image/*"
+          hidden
+        />
+
+        <div class="upload-icon">✦</div>
+
+        <h2>Upload an image</h2>
+
+        <p>JPG, PNG or WEBP</p>
+
+      </label>
+
+
+      <div class="preview-wrap hidden" id="previewWrap">
+
+        <div class="scan-line" id="scanLine"></div>
+
+        <img
+          id="preview"
+          alt="Selected space object"
+        />
+
+      </div>
+
+
+      <div class="button-row">
+
+        <button
+          id="predictBtn"
+          class="button"
+          disabled
+        >
+          Detect object
+        </button>
+
+        <button
+          id="randomBtn"
+          class="button secondary"
+        >
+          🎲 Random image
+        </button>
+
+      </div>
+
+
+      <p id="error" class="error hidden"></p>
+
+    </section>
+
+
+    <!-- RESULT -->
+
+    <section class="card result-card">
+
+      <div class="section-title">
+
+        <h2>Prediction</h2>
+
+        <span id="predictionLabel">
+          Waiting for image
+        </span>
+
+      </div>
+
+
+      <div class="result-main">
+
+        <div
+          class="result-icon"
+          id="resultIcon"
+        >
+          ?
+        </div>
+
+        <div class="result-copy">
+
+          <div
+            class="prediction"
+            id="prediction"
+          >
+            —
+          </div>
+
+          <div
+            class="confidence"
+            id="confidence"
+          >
+            Confidence: —
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="bar-wrap">
+
+        <div class="bar">
+
+          <div
+            class="bar-fill"
+            id="confidenceBar"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="class-grid"
+        id="classGrid"
+      ></div>
+
+    </section>
+
+
+    <!-- AI ANALYSIS -->
+
+    <section class="card">
+
+      <div class="section-title">
+
+        <h2>🔭 AI Analysis</h2>
+
+        <span>Model information</span>
+
+      </div>
+
+
+      <div class="analysis-grid">
+
+        <div>
+          <span>Model</span>
+          <strong>MobileNetV2</strong>
+        </div>
+
+        <div>
+          <span>Input</span>
+          <strong>224 × 224</strong>
+        </div>
+
+        <div>
+          <span>Classes</span>
+          <strong>4</strong>
+        </div>
+
+        <div>
+          <span>Inference</span>
+          <strong>Browser</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SPACE FACT -->
+
+    <section
+      class="card fact-card"
+      id="factCard"
+    >
+
+      <div class="fact-icon">
+        🌌
+      </div>
+
+      <div>
+
+        <h3 id="factTitle">
+          Space Fact
+        </h3>
+
+        <p id="factText">
+          Upload an image to discover an interesting fact
+          about the detected object.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- EXPLORE -->
+
+    <section
+      class="card explore-card hidden"
+      id="exploreCard"
+    >
+
+      <div>
+
+        <h2 id="exploreTitle">
+          Explore this object
+        </h2>
+
+        <p id="exploreText"></p>
+
+      </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+
+    <section class="info-grid">
+
+      <div class="card info-card">
+
+        <h3>How it works</h3>
+
+        <p>
+          The image is resized and processed by the trained
+          TensorFlow model directly in the browser.
+        </p>
+
+      </div>
+
+
+      <div class="card info-card">
+
+        <h3>Classes</h3>
+
+        <p>
+          🪐 Planet &nbsp; ⭐ Star &nbsp;
+          🌌 Nebula &nbsp; 🌠 Galaxy
+        </p>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
